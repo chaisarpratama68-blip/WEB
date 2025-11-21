@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Kelas SMK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistem Manajemen Kelas X Teknik Komputer Dan Jaringan 2</h1>
+            <P>TAHUN AJARAN | 2025/2026</P>
+            <P>WALI KELAS: RAGIL TRIOKTAVIANI S.PD.,M.Sn</P>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="tab active" data-tab="dashboard">Dashboard</div>
+            <div class="tab" data-tab="piket">Jadwal Piket</div>
+            <div class="tab" data-tab="pelajaran">Jadwal Pelajaran</div>
+            <div class="tab" data-tab="pengurus">Pengurus Kelas</div>
+            <div class="tab" data-tab="kas">Kas Kelas</div>
+            <div class="tab" data-tab="kehadiran">Kehadiran Siswa</div>
+        </div>
+        
+        <!-- Dashboard -->
+        <div id="dashboard" class="tab-content active">
+            <h2>Dashboard Kelas</h2>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>23</h3>
+                    <p>Jumlah Siswa</p>
+                </div>
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Kelompok Piket</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="balance-preview">Rp 250.000</h3>
+                    <p>Saldo Kas Kelas</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Rata-rata Kehadiran</p>
+                </div>
+            </div>
+            
+            <h3>Jadwal pelajaran hari ini</h3>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Jadwal Pelajaran Hari Ini</div>
+                </div>
+                <table>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Waktu</th>
+                            <th>Mata Pelajaran</th>
+                            <th>Guru</th>
+                            <th>Ruangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>07.00 - 09.40
+                            </td><td>Bahasa Inggris</td>
+                            <td>Pak Waluyo</td>
+                            <td>B. 207</td>
+                        </tr>
+                        <tr>
+                            <td>10.10 - 12.50</td>
+                            <td>Matematika</td>
+                            <td>Bu Inda</td>
+                            <td>B. 207</td>
+                        </tr>
+                        <tr>
+                            <td>13.20 - 14.40</td>
+                            <td>PPKN</td>
+                            <td>Bu Wanda</td>
+                            <td>B. 207</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Pengumuman</h3>
+            <div class="announcement">
+                <p><strong>TUGAS YANNG BELUM SELESAI HARAP DI SELESAIKAN</strong></p>
+            </div>
+        </div>
+        
+        <!-- Jadwal Piket -->
+        <div id="piket" class="tab-content">
+            <h2>Jadwal Piket Kelas</h2>
+            <button class="btn btn-primary" id="add-duty-btn">Tambah Jadwal Piket</button>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Kelompok</th>
+                        <th>Anggota</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="duty-table">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Jadwal Pelajaran -->
+        <div id="pelajaran" class="tab-content">
+            <h2>Jadwal Pelajaran Hari Ini</h2>
+            <button class="btn btn-primary" id="add-schedule-btn">Tambah Jadwal</button>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Jam</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Guru</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-table">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pengurus Kelas -->
+        <div id="pengurus" class="tab-content">
+            <h2>Struktur Pengurus Kelas</h2>
+            <button class="btn btn-primary" id="add-officer-btn">Tambah Pengurus</button>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jabatan</th>
+                        <th>Nama Siswa</th>
+                        <th>Kelompok</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="officer-table">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Kas Kelas -->
+        <div id="kas" class="tab-content">
+            <h2>Manajemen Kas Kelas</h2>
+            
+            <div class="balance-section">
+                <div class="balance-card">
+                    <h3>Saldo Kas</h3>
+                    <p id="balance-amount">Rp 250.000</p>
+                </div>
+                <div class="balance-actions">
+                    <button class="btn btn-success" id="add-income-btn">Tambah Pemasukan</button>
+                    <button class="btn btn-danger" id="add-expense-btn">Tambah Pengeluaran</button>
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="cashflow-table">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Kehadiran Siswa -->
+        <div id="kehadiran" class="tab-content">
+            <h2>Kehadiran Siswa</h2>
+            <button class="btn btn-primary" id="add-attendance-btn">Tambah Data Kehadiran</button>
+            
+            <div class="form-group">
+                <label for="filter-month">Filter Bulan:</label>
+                <select id="filter-month">
+                    <option value="all">Semua Bulan</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                </select>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Rekap Kehadiran Bulan September 2025</div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Siswa</th>
+                            <th>Hadir</th>
+                            <th>Izin</th>
+                            <th>Sakit</th>
+                            <th>Alpha</th>
+                            <th>Persentase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Adrian Iriza Raditya</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Ahmad Bilal Abdillah</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Ahmad Dzaky Asyraf Wiyahya</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Ahmad Hadi Nuril Anwar</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Ahmad Sahrul Ferdiansyah</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Aldi Rahman Widodo</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Chaisar Pratama</td>
+                            <td>31</td>
+                            <td>0</td>  
+                            <td>0</td>  
+                            <td>0</td>  
+                            <td>100%</td>  
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Dafian Fathiano Akbar</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Danila Aprilia Ika Sifania</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Devant Kenzie Pangestu Budiharto</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Hanjang Diara Putra</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>M. Bryan Syah Putra</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Mochammad Ridho Fitranto</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Mokhamad Khoirul Huda</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Muhamad Messi Dino Pratama</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Nimas Tirta Nirmala</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>Prayogo Adi Siswanto</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>Putra Fidi Dewantara</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>Riska Wulan Ramadhani</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>Rizka Amara Tungga Dewi</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr><tr>
+                            <td>21</td>
+                            <td>Shaskya Aurel Salsabila</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr><tr>
+                            <td>22</td>
+                            <td>Tsabit Bakhtiar Al Mubarok</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr><tr>
+                            <td>23</td>
+                            <td>Wahyu Haris Prayodha</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Modal untuk menambah data -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Tambah Data</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div id="modal-body">
+                <!-- Konten modal akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
